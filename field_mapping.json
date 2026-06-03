@@ -1,0 +1,76 @@
+{
+    "mappings": [
+        {
+            "source_field": "product_title",
+            "standard_field": "productName",
+            "reasoning": "The 'product_title' contains the comprehensive description of the product, including brand, model, and packaging size, aligning with 'productName'.",
+            "transformation_required": "Trim and combine brand, model, and size descriptors from 'product_title' into 'productName'."
+        },
+        {
+            "source_field": "product_title",
+            "standard_field": "brand",
+            "reasoning": "The first part of 'product_title' generally provides the brand name.",
+            "transformation_required": "Extract the first word or name from 'product_title' as 'brand'."
+        },
+        {
+            "source_field": "product_title",
+            "standard_field": "model",
+            "reasoning": "Model/variant details are embedded within 'product_title' if applicable.",
+            "transformation_required": "Identify and extract variant or model descriptions if present post-initial brand entry in 'product_title'."
+        },
+        {
+            "source_field": "product_title",
+            "standard_field": "packSize",
+            "reasoning": "The 'product_title' includes numeric expression of package size.",
+            "transformation_required": "Extract numeric values from 'product_title' representing size."
+        },
+        {
+            "source_field": "product_title",
+            "standard_field": "unit",
+            "reasoning": "Units like 'ml', 'g', 'L', etc., are stated in 'product_title'.",
+            "transformation_required": "Normalize and extract unit values from 'product_title'."
+        },
+        {
+            "source_field": "list_price",
+            "standard_field": "sellPrice",
+            "reasoning": "'list_price' represents the regular price in THB.",
+            "transformation_required": "Remove any non-numeric characters and convert 'list_price' to a decimal format."
+        },
+        {
+            "source_field": "discount_price",
+            "standard_field": "promotionalPrice",
+            "reasoning": "'discount_price' indicates a reduced price, if available.",
+            "transformation_required": "Cleanse 'discount_price' by stripping non-numeric characters and applying a null if absent."
+        },
+        {
+            "source_field": "qty_avail",
+            "standard_field": "stockLevel",
+            "reasoning": "'qty_avail' provides current stock information, either as a count or status.",
+            "transformation_required": "Convert available stock count to integer; interpret 'out of stock' as null."
+        },
+        {
+            "source_field": "id",
+            "standard_field": "standardizedItemId",
+            "reasoning": "'id' serves as a unique identifier correlating with 'standardizedItemId'.",
+            "transformation_required": "Utilize 'id' directly as 'standardizedItemId'."
+        },
+        {
+            "source_field": "category",
+            "standard_field": "category",
+            "reasoning": "The category is not directly in the source but can be inferred via heuristics from the product name or external maps.",
+            "transformation_required": "Implement rule-based categorization or use a mapping table to cross-reference categories with 'product_title'."
+        },
+        {
+            "source_field": "shop_id",
+            "standard_field": "sellerId",
+            "reasoning": "'shop_id' lists the seller or merchant's identifier in the source format.",
+            "transformation_required": "Use 'shop_id' as-is for 'sellerId'."
+        },
+        {
+            "source_field": "lastUpdated",
+            "standard_field": "lastUpdated",
+            "reasoning": "Not directly present, yet derived from source context for updating purposes.",
+            "transformation_required": "Capture and apply batch processing or system timestamp at transformation."
+        }
+    ]
+}
