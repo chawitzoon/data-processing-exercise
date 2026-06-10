@@ -189,7 +189,7 @@ def run_ingestion():
             matched_results_collector.append({
                 "source_row_id": source_id,
                 "matched_standardizedItemId": decision.matched_standardizedItemId,
-                "confidence": round(decision.confidence, 4),
+                "confidence": round(decision.confidence, 4), # initial submission appraoch populated confidence score by the LLM. But in practice, it is preferred to get the score from non-LLM result; similarity search score, etc
                 "decision": decision.decision.lower(),
                 "reason": decision.reason
             })
